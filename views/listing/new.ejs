@@ -1,0 +1,80 @@
+<%- layout("/layouts/boilerplate"); -%>
+
+<body>
+    <!-- http://localhost:8080/listings/new -->
+    <div>
+        <form method="post" action="/listings/new" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <br>
+                <h3>Create a New Listing</h3>
+                <div class="mb-3">
+                    <div>
+                    <label for="title" class="form-lable">title</label>
+                        <input name="listing[title]"
+                        class="form-control"  
+                        type="text" 
+                        required
+                        placeholder="Entre title"/> 
+                        <div class="invalid-feedback">Please provide a valid Title</div>
+                    </div><br>
+                    
+                    <div>
+                        <label for="description" class="form-lable">Description</label>
+                        <textarea name="listing[description]" 
+                        class="form-control" 
+                        required 
+                        placeholder="Entre description"></textarea>
+                        <div class="invalid-feedback">Please provide a valid Discription</div>
+                    </div><br>
+                    
+                    <div>
+                    <label for="image" class="form-lable">Uplode Listing Image</label>
+                        <input name="listing[image[url]]"
+                        class="form-control"  
+                        type="file"
+                        placeholder="Uplode image"/> 
+                        <div class="valid-feedback">Default image</div>
+                    </div><br>
+                    
+                    <div class="row">
+                        <div class="md-3 col-md-4">
+                            <label for="price" class="form-lable">Price</label>
+                                <input name="listing[price]"
+                                class="form-control"  
+                                required
+                                placeholder="Enter Price">
+                            <div class="invalid-feedback">Please provide a valid Price</div>
+                        </div>
+                        <div class="md-3 col-md-8">
+                            <label for="country" class="form-lable">Country</label>
+                                <input name="listing[country]"
+                                class="form-control"  
+                                type="text" 
+                                required
+                                placeholder="Enter Country">
+                                <div class="invalid-feedback">Please provide a valid Country</div> 
+                        </div>
+                    </div>
+                    <br>
+
+                    <div>
+                    <label for="title" class="form-lable">Location</label>
+                        <input name="listing[location]"
+                        class="form-control"  
+                        type="text" 
+                        required
+                        placeholder="Enter Location"> 
+                        <div class="invalid-feedback">Please provide a valid Location</div>
+                    </div><br>
+
+                </div>
+                <button type="submit" class="btn btn-dark btn-add">Add</button>
+            </div>
+        </div>
+        <br>
+        <br>
+    </form>
+    </div>
+</body>
+</html>

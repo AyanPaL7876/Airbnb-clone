@@ -1,0 +1,101 @@
+<%- layout("/layouts/boilerplate"); -%>
+
+<body>
+     <!-- http://localhost:8080/listings/edit -->
+     <div>
+        <form method="POST" 
+            action="/listings/<%= listing._id %>/edit?_method=PUT" 
+            novalidate class="needs-validation"
+            enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <br>
+                <h3>Edit Your Listing</h3>
+                <div class="mb-3">
+                    <!-- title -->
+                    <div>
+                    <label for="title" class="form-lable">title</label>
+                        <input name="listing[title]"
+                        class="form-control"  
+                        type="text"
+                        required
+                        value="<%= listing.title %>"
+                        placeholder="Entre title"> 
+                        <div class="invalid-feedback">Please provide a valid Title</div>
+                    </div><br>
+                    
+                    <!-- discription -->
+                    <div>
+                        <label for="description" class="form-lable">Description</label>
+                        <textarea name="listing[description]" 
+                        class="form-control"
+                        required
+                        placeholder="Entre description"><%= listing.description %></textarea>
+                        <div class="invalid-feedback">Please provide a valid Description</div>
+                    </div><br>
+                    
+                    <!-- IMG -->
+                    <div>
+                        <label for="description" class="form-lable">Original Image</label>
+                        <br>
+                        <img src="<%= originalImage %>">
+                    </div>
+
+                    <div>
+                    <label for="image" class="form-lable">New Image Link</label>
+                        <input name="listing[image[url]]"
+                        class="form-control"  
+                        type="file"
+                        placeholder="Uplode image"> 
+                        <div class="invalid-feedback">Please provide a valid Image</div>
+                    </div><br>
+                    
+                    <!-- Price -->
+                    <div class="row">
+                        <div class="md-3 col-md-4">
+                            <label for="price" class="form-lable">Price</label>
+                                <input name="listing[price]"
+                                class="form-control"  
+                                type="number"
+                                required
+                                value="<%= listing.price %>"
+                                placeholder="Enter price">
+                                <div class="invalid-feedback">Please provide a valid Price</div>
+                            </div>
+                            
+                            <!-- country -->
+                            <div class="md-3 col-md-8">
+                            <label for="country" class="form-lable">Country</label>
+                                <input name="listing[country]"
+                                class="form-control"  
+                                type="text"
+                                required
+                                value="<%= listing.country %>"
+                                placeholder="Enter price"> 
+                                <div class="invalid-feedback">Please provide a valid Country</div>
+                            </div>
+                        </div><br>
+
+                    <!-- location -->
+                    <div>
+                    <label for="title" class="form-lable">Location</label>
+                    <input name="listing[location]"
+                        class="form-control"  
+                        type="text"
+                        required
+                        value="<%= listing.location %>"
+                        placeholder="Enter Location"> 
+                        <div class="invalid-feedback">Please provide a valid Location</div>
+                    </div><br>
+                    
+                </div>
+                <button type="submit" class="btn btn-dark btn-edit">Edit</button>
+            </div>
+        </div>
+        <br>
+        <br>
+    </form>
+    </div>
+    <script src="/JS/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+   <div class="container-fluid">
+     <a class="navbar-brand" href="/listings">
+      <img src="https://res.cloudinary.com/duyxbtqzy/image/upload/v1711737336/wanderlust_DEV/qelrgo1iboegqifhk2hv.png" width="120vw" height="40vh">
+    </a>
+  
+     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button> -->
+     
+     <div class="collapse navbar-collapse " id="navbarNav">
+
+       <div class="navbar-nav search-box mx-auto">
+         <form method="post" class="d-flex " action="/search" role="search">
+            <input class="form-control me-2" id="search-dest" name="searchCountry" type="search" placeholder="Search country" aria-label="Search" required>
+            <button class="btn btn-outline-success btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+       </div>
+      
+       <div class="navbar-nav">
+          <!-- <a class="nav-link" href="/listings">Home</a>
+          <a class="nav-link" href="/listings">All Listings</a> -->
+        </div>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings/new"><strong>Switch to hosting</strong></a>
+          <% if (!currUser) { %>
+            <a class="nav-link" href="/user/signup">Signin</a>
+            <a class="nav-link" href="/user/login">Login</a>
+          <% } %>
+          <% if (currUser) { %>
+            <a class="nav-link" href="/user/logout">Logout</a>
+          <% } %>
+        </div>
+       </div>
+      </div>
+</nav>
+

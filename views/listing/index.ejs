@@ -1,0 +1,207 @@
+<%- layout("/layouts/boilerplate"); -%> 
+<style>
+    .filters{
+        display: flex;
+        width: 100%;   
+        text-align: center;
+    }
+    .choice{
+        display: flex;
+        width: 70%;
+        overflow-x: auto;
+    }
+    .choice::-webkit-scrollbar{
+        width: 0%;
+        height: 0%;
+    }
+    .filter{
+        opacity: 0.75;
+        margin: 0rem 0.7rem; 
+        padding: 1rem 0.3rem 0rem 0.3rem;
+        text-align: center;
+        width: 4rem;
+    }
+    .filter p{
+        font-size:small;
+        width: 4rem;
+    }
+    
+    .filter i{
+        width: 4rem;
+        font-size:1.4rem;
+    }
+   
+    .filter:hover{
+        opacity: 1.2;
+        cursor: pointer;
+    }
+   
+    .filter:checked{
+        opacity: 1.5;
+    }
+    
+    #previous,#next{
+        color: rgb(136, 136, 136);
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        
+    }
+
+</style>
+
+<body>
+    <div class="filters ">
+
+        <div id="previous"><i class="fa-solid fa-circle-chevron-left"></i></div>
+
+        <div class="choice">
+            <div class="filter" style="margin-left: 0%; padding-left:0%">
+                <div><i class="fa-solid fa-chess-rook"></i></div>
+                <p>Castles</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-umbrella-beach"></i></div>
+                <p>Beach</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-water-ladder"></i></div>
+                <p>Pools</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-caravan"></i></div>
+                <p>CamperVans</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-snowflake"></i></div>
+                <p>Arctic</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-brands fa-phoenix-framework"></i></div>
+                <p>OMG!</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-tractor"></i></div>
+                <p>Farms</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-person-skiing"></i></div>
+                <p>Ski-in/out</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-sailboat"></i></div>
+                <p>Boats</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-volleyball"></i></div>
+                <p>Play</p>
+            </div>
+        
+            <div class="filter">
+                <div><i class="fa-solid fa-tower-observation"></i></div>
+                <p>Towers</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-ferry"></i></div>
+                <p>Houseboats</p>
+            </div>
+        
+        </div>
+
+        <div id="next"><i class="fa-solid fa-circle-chevron-right"></i></i></div>
+
+        <div class="tax-toggle ms-auto">
+            <div class="form-check form-switch form-check-reverse tax-in">
+                <label class="form-check-label tax-lebel" for="flexSwitchCheckReverse"><strong>Display total before taxes</strong></label>
+                <input class="form-check-input " type="checkbox" id="flexSwitchCheckReverse" >
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xl-4">
+        <% for(let listing of allListing) { %>
+        <a href="/listings/<%= listing._id %>" class="listings-link">
+            <div class="card listing-card col" style="width: 20rem;">
+                <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image">
+                <div class="card-img-overlay  ms-auto">
+                    <button class="btn like-btn" href="/listing/user/wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <p class="card-title"><b><%= listing.title %></b></p>
+                    <% if (listing.price !== null && listing.price !== undefined) { %>
+                        <p class="card-text"><b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b> /night</p>
+                    <% } else { %>
+                        <p class="card-text">Price not available</p>
+                    <% } %>
+                </div>
+            </div>
+        </a>
+        <% } %>
+    </div>
+</body>
+
+<!-- HTML -->
+<script>
+    // Ensure DOM content is loaded before executing JavaScript
+    document.addEventListener("DOMContentLoaded", function() {
+        // Retrieve scroll container and buttons from the DOM
+        let scrollContainer = document.querySelector(".choice");
+        let backBtn = document.getElementById("previous");
+        let nextBtn = document.getElementById("next");
+
+        // Check if scroll container and buttons are successfully retrieved
+        if (scrollContainer && backBtn && nextBtn) {
+            // Add event listener for mouse wheel scrolling
+            scrollContainer.addEventListener("wheel", (event) => {
+                // Prevent default scroll behavior
+                event.preventDefault();
+                // Scroll horizontally based on mouse wheel movement
+                scrollContainer.scrollLeft += event.deltaY;
+                // Disable smooth scrolling behavior temporarily
+                scrollContainer.style.scrollBehavior = "auto";
+            });
+
+            // Add event listener for "Next" button click
+            nextBtn.addEventListener("click", () => {
+                // Enable smooth scrolling behavior
+                scrollContainer.style.scrollBehavior = "smooth";
+                // Scroll horizontally by a certain amount (adjust as needed)
+                scrollContainer.scrollLeft += 1000;
+            });
+
+            // Add event listener for "Previous" button click
+            backBtn.addEventListener("click", () => {
+                // Enable smooth scrolling behavior
+                scrollContainer.style.scrollBehavior = "smooth";
+                // Scroll horizontally backwards by a certain amount (adjust as needed)
+                scrollContainer.scrollLeft -= 1000;
+            });
+        } else {
+            console.error("Failed to retrieve necessary DOM elements.");
+        }
+    });
+</script>
+
